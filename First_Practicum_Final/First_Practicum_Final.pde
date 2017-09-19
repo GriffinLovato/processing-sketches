@@ -24,6 +24,9 @@
 * in color, while the right mouse button changes the hue to become more dark.
 */
 
+import processing.pdf.*:
+import java.util.Calender;
+
 boolean savePDF;
 
 // Stuff you need but can safely ignore right now
