@@ -1,6 +1,6 @@
 /* Lovato, Griffin
 *
-* 12/6/17
+* 12/8/17
 *
 * Exercise 24 Activity 1
 *
@@ -35,6 +35,18 @@ void setup() {
   fill(0);
   ellipse(300,300,100,100);
   
+  beginShape();
+  fill(255,180,0);
+  vertex(100,105);
+  vertex(140,105);
+  vertex(140,180);
+  vertex(135,170);
+  vertex(135,185);
+  vertex(100,140);
+  translate(175,160);
+  endShape();
+  
+  translate(-175,-160);
   textAlign(CENTER);
   fill(255);
   textSize(20);
