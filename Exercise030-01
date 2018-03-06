@@ -1,3 +1,15 @@
+/*
+Lovato, Griffin
+
+3/6/18
+
+Exercise 030-01
+
+This sketch creates 3 sets of points within a range. The red range has a static
+x value, the green range have a random value determined by randomSeed(), and the
+blue range uses random() x values from the computer.
+*/
+
 int i = 250;
 
 void setup() {
