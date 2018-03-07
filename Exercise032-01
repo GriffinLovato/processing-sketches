@@ -8,61 +8,38 @@ Lovato, Griffin
  A representation of a black hole. The green dots are the spiral of the black hole,
  the red dots are the path of an object orbiting the black hole, and the blue dot
  is an object (non-functioning).
+ 
+ Uses code from https://www.openprocessing.org/sketch/106191
 */
 
-
-float x = 0.0;
-float y = 0.0;
-float easing = 0.05;
-
-float c = 0.0;
-float d = 0.0;
-float radius1 = 3.0;
-float speedX = 1.0;
-float speedY = 1.0;
-int directionX = 1;
-int directionY = -1;
-
+float x;
+float y;
+float radius;
+float angle;
+ 
 void setup() {
-  size(150, 150);
-  fill(0);
+  size(600, 600);
   noStroke();
+  setStart(120, 120);
 }
-
+ 
 void draw() {
-  fill(0, 5);
-  rect(0, 0, width, height);
-
-  float scalar = map(width/8, 0, width, 4, 20);
-  float radius = 1.0;
-  for (int deg = 0; deg < 360*6; deg += scalar) {
-    float angle = radians(deg);
-    float a = 75 + (cos(angle) * radius);
-    float b = 42 + (sin(angle) * radius);
-    fill(0, 255, 0);
-    rect(a, b, 1, 1);
-    radius = radius + 0.34;
-
-    float targetX = a;
-    float targetY = b;
-    x += (targetX - x) * easing;
-    y += (targetY - y) * easing;
-
-    fill(255, 0, 0);
-    ellipse(x, y, 1, 1);
-
-    ellipseMode(RADIUS);
-    fill(0, 0, 255);
-    ellipse(c, d, radius1, radius1);
-    c += speedX * directionX;
-    if ((c > x) || (c < radius1)) {
-      directionX = -directionX;
-    }
-    d += speedY * directionY;
-    if ((d > y) || (d < radius1)) {
-      directionY = - directionY;
-    }
-    // c += 0.01;
-    // d += 0.01;
-  }
+  fill(0,15);
+  rect(0,0,width,height);
+    translate(width / 2, height / 2);
+    angle += 0.02;
+    radius -= 0.1;
+    if(radius < 0)
+        radius = 0;
+    x = sin(angle) * radius;
+    y = cos(angle) * radius;
+    fill(255);
+    ellipse(x, y, 15, 15);
+}
+ 
+void setStart(int x, int y) {
+    angle = atan2(x - width / 2, y - height / 2);
+    radius = dist(width / 2, height / 2, x, y);
+    this.x = x;
+    this.y = y;
 }
