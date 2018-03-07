@@ -17,7 +17,9 @@ void setup() {
 }
 
 void draw() {
-  background(0,125);
+  fill(0,5);
+  rect(0,0,width,height);
+  
   float scalar = map(width/8, 0, width, 4, 20);
   float radius = 1.0;
   for (int deg = 0; deg < 360*6; deg += scalar) {
@@ -49,6 +51,3 @@ void draw() {
     }
   }
 }
-      
-    
-    
