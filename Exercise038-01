@@ -19,39 +19,31 @@ class particle {
     tmp = temparature;
   }
   void update() {
-    println(x,y,sz,sz2,tmp);
-    delay(100);
-    ellipse(x,y,sz,sz2);
-    tmp *= random(-2,2);
-    x += tmp;
-    tmp *= random(-2,2);
-    y += tmp;
-    if((tmp < 0.1) && (tmp > 0.1)) {
-      tmp += 0.1;
+   
+    ellipse(x,y,sz,sz);
+    x+= random(-tmp/sz,tmp/sz);
+    //x += tmp;
+    y += random(-tmp/sz,tmp/sz);
+    //y += tmp;
+    if(tmp == 0) {
+      tmp += 1;
     }
   }
 }
 
 
-particle brownian0 = new particle(random(0,800),random(0,800),50,50,5);
-particle brownian1 = new particle(random(0,800),random(0,800),50,50,5);
-particle brownian2 = new particle(random(0,800),random(0,800),50,50,5);
-particle brownian3 = new particle(random(0,800),random(0,800),50,50,5);
-particle brownian4 = new particle(random(0,800),random(0,800),50,50,5);
-particle brownian5 = new particle(random(0,800),random(0,800),50,50,5);
-particle brownian6 = new particle(random(0,800),random(0,800),50,50,5);
-particle brownian7 = new particle(random(0,800),random(0,800),50,50,5);
+particle[] brownian = new particle[250];
 void setup() {
   size(800,800);
+  for (int i = 0; 250 > i; i++) {
+    brownian[i] = new particle(random(width),random(height),random(10),random(10),random(5));
+  }
 }
 void draw() {
+  noStroke();
   background(0);
-  brownian0.update();
-  brownian1.update();
-  brownian2.update();
-  brownian3.update();
-  brownian4.update();
-  brownian5.update();
-  brownian6.update();
-  brownian7.update();
+  for (int i = 0; 250 > i; i++) {
+    brownian[i].update();
+  }
+  
 }
