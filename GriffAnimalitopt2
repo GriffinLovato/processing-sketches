@@ -9,15 +9,16 @@ class You {
     ArrayList<float[]> info = MAP.infoSight(YOU).get(0);
 
 
-    YOU.speed = 1; //dont do drugs kids
+    float speed = 1; //dont do drugs kids
     float goalx;
     float goaly;
     float distance;
     ang = -1;
-    
-     if (ang == -1) {
-        ang = atan2(288-YOU.x, 288-YOU.y);
-      }
+
+    if (ang == -1) {
+      ang = atan2(width/2-YOU.x, height/2-YOU.y);
+    }
+
 
     for (int i = 0; (info.size()) > i; i++) { //repeat for each item
       ////main loop
@@ -25,12 +26,12 @@ class You {
       goalx = info.get(0)[0];
       goaly = info.get(0)[1];
       ang = atan2(goalx-YOU.x, goaly-YOU.y);
-      
+
       strokeWeight(0.5);
       stroke(255, 0, 0);
       line(YOU.x, YOU.y, goalx, goaly);
-      
-      println(goalx,goaly);
+
+      println(goalx, goaly);
     }
 
 
@@ -38,9 +39,13 @@ class You {
 
 
     // ang = atan2(goal[0]-YOU.x,goal[1]-YOU.y); //points towards function
-    if (YOU.hit(MAP, YOU.x, YOU.y)) {
-      goalx = 288;
-      goaly = 288;
+    if (YOU.hit(MAP, YOU.x+sin(ang), YOU.y+cos(ang))) {
+      stroke(255, 0, 0);
+      noFill();
+      ellipse(YOU.x, YOU.y, 20, 20);
+
+      YOU.x += random(-1, 1);
+      YOU.y += random(-1, 1);
       //if hitting against wall
     }
     if (YOU.evolveReady()) { //if ready to evolve
@@ -48,7 +53,7 @@ class You {
     }
 
     ////
-    this.calc2(MAP, ang, YOU.speed ); //mandatory, makes you moves, takes angle of movement, and speed as input
+    this.calc2(MAP, ang, speed); //mandatory, makes you moves, takes angle of movement, and speed as input
   }
 
 
