@@ -1,5 +1,6 @@
 class You {
-  float ang; 
+  float ang;
+  int TextMeme = round(random(1, 5));
   character YOU;
   You () {
     YOU = new character(width/2, height/2, 10);
@@ -17,6 +18,9 @@ class You {
 
     if (ang == -1) {
       ang = atan2(width/2-YOU.x, height/2-YOU.y);
+      strokeWeight(0.5);
+      stroke(255, 0, 0);
+      //line(YOU.x, YOU.y, width/2, height/2);
     }
 
 
@@ -32,6 +36,12 @@ class You {
       line(YOU.x, YOU.y, goalx, goaly);
 
       println(goalx, goaly);
+
+      if (ang == -1) {
+        strokeWeight(0.5);
+        stroke(255, 0, 0);
+        line(YOU.x, YOU.y, width/2, height/2);
+      }
     }
 
 
@@ -40,12 +50,62 @@ class You {
 
     // ang = atan2(goal[0]-YOU.x,goal[1]-YOU.y); //points towards function
     if (YOU.hit(MAP, YOU.x+sin(ang), YOU.y+cos(ang))) {
-      stroke(255, 0, 0);
-      noFill();
-      ellipse(YOU.x, YOU.y, 20, 20);
+      if (TextMeme == 1) {
+        textAlign(CENTER);
+        fill(255, 0, 125);
+        textSize(12);
+        text("CAN'T HANDLE THESE DODGES BOIIIII", YOU.x, YOU.y-10);
+      }
+      if (TextMeme == 2) {
+        textAlign(CENTER);
+        fill(215, 125, 0);
+        textSize(24);
+        text("SKRRT", YOU.x, YOU.y-10);
+      }
+      if (TextMeme == 3) {
+        textAlign(CENTER);
+        fill(0, 0, 255);
+        textSize(16);
+        text("DRIFT GAME TOO STRONG", YOU.x, YOU.y-10);
+      }
+      if (TextMeme == 4) {
+        textAlign(CENTER);
+        fill(255, 0, 0);
+        textSize(30);
+        text("ZOOM", YOU.x, YOU.y-10);
+      }
+      if (TextMeme == 5) {
+        textAlign(CENTER);
+        fill(0, 200, 0);
+        textSize(16);
+        text("2DODGY4U", YOU.x, YOU.y-10);
+      }
 
-      YOU.x += random(-1, 1);
-      YOU.y += random(-1, 1);
+
+      //BEST CODE RIGHT HERE
+      if (YOU.hit(MAP, YOU.x+sin(ang), YOU.y+cos(ang))) {
+        goalx = YOU.x-30; //Go Left
+        goaly = YOU.y;
+        ang = atan2(goalx-YOU.x, goaly-YOU.y);
+        if (YOU.hit(MAP, YOU.x+sin(ang), YOU.y+cos(ang))) {
+          goaly = YOU.y-30; //Go Up
+          goalx = YOU.x;
+          ang = atan2(goalx-YOU.x, goaly-YOU.y);
+          if (YOU.hit(MAP, YOU.x+sin(ang), YOU.y+cos(ang))) {
+            goalx = YOU.x+30; //Go Right
+            goaly = YOU.y;
+            ang = atan2(goalx-YOU.x, goaly-YOU.y);
+            if (YOU.hit(MAP, YOU.x+sin(ang), YOU.y+cos(ang))) {
+              goaly = YOU.y+30; //Go Down
+              goalx = YOU.x;
+              ang = atan2(goalx-YOU.x, goaly-YOU.y);
+            }
+          }
+        }
+      }
+
+      //   YOU.x += random(-1, 1);
+      //   YOU.y += random(-1, 1);
       //if hitting against wall
     }
     if (YOU.evolveReady()) { //if ready to evolve
