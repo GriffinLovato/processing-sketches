@@ -3,7 +3,7 @@ class You {
   int TextMeme = round(random(1, 5));
   character YOU;
   You () {
-    YOU = new character(width/2, height/2, 10);
+    YOU = new character(width-20, height-20, 10);
   }
   void run(map MAP) {//Avalible functions, part allowed to change
     this.calc();
@@ -15,6 +15,15 @@ class You {
     float goaly;
     float distance;
     ang = -1;
+    println(YOU.energy);
+
+
+    if (YOU.energy < 0) {
+      textAlign(CENTER);
+      fill(125, 0, 0);
+      textSize(25);
+      text("DED", width/2, height/2);
+    }
 
     if (ang == -1) {
       ang = atan2(width/2-YOU.x, height/2-YOU.y);
@@ -35,7 +44,7 @@ class You {
       stroke(255, 0, 0);
       line(YOU.x, YOU.y, goalx, goaly);
 
-      println(goalx, goaly);
+      //println(goalx, goaly);
 
       if (ang == -1) {
         strokeWeight(0.5);
@@ -52,7 +61,7 @@ class You {
     if (YOU.hit(MAP, YOU.x+sin(ang), YOU.y+cos(ang))) {
       if (TextMeme == 1) {
         textAlign(CENTER);
-        fill(255, 0, 125);
+        fill(125, 0, 255);
         textSize(12);
         text("CAN'T HANDLE THESE DODGES BOIIIII", YOU.x, YOU.y-10);
       }
@@ -84,45 +93,65 @@ class You {
 
       //BEST CODE RIGHT HERE
       if (YOU.hit(MAP, YOU.x+sin(ang), YOU.y+cos(ang))) {
-        goalx = YOU.x-30; //Go Left
+        goalx = YOU.x-30; //Go West
         goaly = YOU.y;
         ang = atan2(goalx-YOU.x, goaly-YOU.y);
         if (YOU.hit(MAP, YOU.x+sin(ang), YOU.y+cos(ang))) {
-          goaly = YOU.y-30; //Go Up
-          goalx = YOU.x;
+          goalx = YOU.x-30; //Go Northwest
+          goaly = YOU.y-30;
           ang = atan2(goalx-YOU.x, goaly-YOU.y);
           if (YOU.hit(MAP, YOU.x+sin(ang), YOU.y+cos(ang))) {
-            goalx = YOU.x+30; //Go Right
-            goaly = YOU.y;
+            goaly = YOU.y-30; //Go North
+            goalx = YOU.x;
             ang = atan2(goalx-YOU.x, goaly-YOU.y);
             if (YOU.hit(MAP, YOU.x+sin(ang), YOU.y+cos(ang))) {
-              goaly = YOU.y+30; //Go Down
-              goalx = YOU.x;
+              goalx = YOU.x+30; //Go Northeast
+              goaly = YOU.y-30;
               ang = atan2(goalx-YOU.x, goaly-YOU.y);
+              if (YOU.hit(MAP, YOU.x+sin(ang), YOU.y+cos(ang))) {
+                goalx = YOU.x+30; //Go East
+                goaly = YOU.y;
+                ang = atan2(goalx-YOU.x, goaly-YOU.y);
+                if (YOU.hit(MAP, YOU.x+sin(ang), YOU.y+cos(ang))) {
+                  goalx = YOU.x+30; //Go Southeast
+                  goaly = YOU.y+30;
+                  ang = atan2(goalx-YOU.x, goaly-YOU.y);
+                  if (YOU.hit(MAP, YOU.x+sin(ang), YOU.y+cos(ang))) {
+                    goaly = YOU.y+30; //Go South
+                    goalx = YOU.x;
+                    ang = atan2(goalx-YOU.x, goaly-YOU.y);
+                    if (YOU.hit(MAP, YOU.x+sin(ang), YOU.y+cos(ang))) {
+                      goalx = YOU.x-30; //Go Southwest
+                      goaly = YOU.y+30;
+                      ang = atan2(goalx-YOU.x, goaly-YOU.y);
+                    }
+                  }
+                }
+              }
             }
           }
         }
       }
 
-      //   YOU.x += random(-1, 1);
-      //   YOU.y += random(-1, 1);
-      //if hitting against wall
-    }
-    if (YOU.evolveReady()) { //if ready to evolve
-      MAP.evolve(YOU, 0); //then evolve with choice of path 0
-    }
+              //   YOU.x += random(-1, 1);
+              //   YOU.y += random(-1, 1);
+              //if hitting against wall
+            }
+            if (YOU.evolveReady()) { //if ready to evolve
+              MAP.evolve(YOU, 0); //then evolve with choice of path 0
+            }
 
-    ////
-    this.calc2(MAP, ang, speed); //mandatory, makes you moves, takes angle of movement, and speed as input
-  }
+            ////
+            this.calc2(MAP, ang, speed); //mandatory, makes you moves, takes angle of movement, and speed as input
+          }
 
 
-  void calc() {
-    YOU.view();
-    YOU.run();
-  }
-  void calc2(map map, float ang, float speed) {
-    YOU.move(map, ang, min(YOU.maxSpeed, speed) ); //max speed of maxSpeed
-    map.eatan(YOU);
-  }
-}
+          void calc() {
+            YOU.view();
+            YOU.run();
+          }
+          void calc2(map map, float ang, float speed) {
+            YOU.move(map, ang, min(YOU.maxSpeed, speed) ); //max speed of maxSpeed
+            map.eatan(YOU);
+          }
+        }
