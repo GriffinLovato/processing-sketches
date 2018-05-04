@@ -3,6 +3,7 @@ void setup() {
   size(700,700);
   img = loadImage("montroig-village-and-church.jpg");
   img.resize(700,700);
+  img.filter(BLUR,3);
   image(img,0,0);
   loadPixels();
   for(int i = 0; i < width*height; i++) {
