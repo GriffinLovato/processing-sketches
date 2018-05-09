@@ -1,3 +1,15 @@
+/* Lovato, Griffin
+*
+* 5/3/2018
+*
+* Exercise 040-01
+*
+* A sketch displaying 4 animalitos instead of one. Each Animalito is a different color and has a seperate
+* energy count. They all have the same pathfinding methods as the other animalitos.
+*
+* (!!!) NOTE: All 5 parts of 040-01 are needed to run the sketch, each part in a seperate tab. (!!!)
+*/
+
 class map {//class to draw the background, **not essential to know for the game** (except for the food functions)
   float[][] walls = new float[int(random(30,50)) ][4]; //creates random up to 90 walls
   ArrayList<bacteria> food = new ArrayList(); //start list of bacteria, called food
