@@ -4,7 +4,8 @@
  *
  * Exercise 041-01
  *
- * A thing that does bsns
+ * Several GUI elements in a row. The buttons change the background, the dropdown list changes the color of the ellipse next to it,
+ * and the slider changes the size of the ellipse next to it.
  */
 
 import controlP5.*;
