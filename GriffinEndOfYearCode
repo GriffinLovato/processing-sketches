@@ -1,0 +1,157 @@
+/*
+Lovato, Griffin
+ 
+ GUI code
+ 
+ 5/17/2018
+ 
+ Code for the GUI for the ned of year coding project. Displays a menu with several buttons,
+ with a tab selector on the top right to show/hide the GUI buttons.
+ */
+
+import controlP5.*;
+
+ControlP5 cp5;
+
+boolean mainmenu, pang, weirdmario, options, quitter;
+int quit = 0;
+
+void setup() {
+  size(1000, 500);
+  noStroke();
+  smooth();
+  cp5 = new ControlP5(this);
+  
+  cp5.addTab("Hide Menu")
+  .setColorLabel(color(255))
+  .setColorActive(color(255,0,0))
+  ;
+  
+  cp5.getTab("default")
+  .activateEvent(false)
+  .setLabel("Show Menu")
+  .setId(1)
+  .setColorLabel(color(255))
+  .setColorActive(color(0,255,0))
+  ;
+  
+  cp5.getTab("Hide Menu")
+  .activateEvent(false)
+  .setId(2)
+  ;
+  
+
+  cp5.addButton("PlayPang")
+    .setValue(1)
+    .setPosition(width/2-75, 150)
+    .setSize(150, 30)
+    ;
+
+  cp5.addButton("PlayWeirdMario")
+    .setValue(2)
+    .setPosition(width/2-75, 190)
+    .setSize(150, 30);
+  ;
+
+  cp5.addButton("Options")
+    .setValue(3)
+    .setPosition(width/2-75, 230)
+    .setSize(150, 30)
+    ;
+
+  cp5.addButton("BeAQuitter")
+    .setValue(4)
+    .setPosition(width/2-75, 300)
+    .setSize(150, 30)
+    ;
+
+  cp5.addButton("Back To Menu")
+  .setValue(5)
+  .setPosition(930,10)
+  .setSize(60,20)
+  ;
+  
+  cp5.getController("Back To Menu").moveTo("global");
+}
+
+void controlEvent(ControlEvent theEvent) {
+  if (theEvent.isGroup()) {
+    println("event from group : "+theEvent.getGroup().getValue()+" from "+theEvent.getGroup());
+  } else if (theEvent.isController()) {
+    println("event from controller : "+theEvent.getController().getValue()+" from "+theEvent.getController());
+  } else if (theEvent.isTab()) {
+    println("one tabby boi");
+  }
+
+  if (theEvent.getController().getValue() == 1) {
+    pang = true;
+    mainmenu = false;
+    weirdmario = false;
+    options = false;
+    quitter = false;
+    //setId() = 2;
+  } else if (theEvent.getController().getValue() == 2) {
+    pang = false;
+    mainmenu = false;
+    weirdmario = true;
+    options = false;
+    quitter = false;
+  } else if (theEvent.getController().getValue() == 3) {
+    pang = false;
+    mainmenu = false;
+    weirdmario = false;
+    options = true;
+    quitter = false;
+  } else if (theEvent.getController().getValue() == 4) {
+    pang = false;
+    mainmenu = false;
+    weirdmario = false;
+    options = false;
+    quitter = true;
+    quit += 1;
+  } else if (theEvent.getController().getValue() == 5) {
+    pang = false;
+    mainmenu = true;
+    weirdmario = false;
+    options = false;
+    quitter = false;
+  }
+}
+
+void draw() {
+  if (mainmenu==true) {
+    background(150, 100, 75);
+    fill(0, 50, 255);
+    textAlign(CENTER);
+    textSize(60);
+    text("Game Name", width/2, 100);
+  } else if (pang==true) {
+    background(100);
+    fill(255);
+    textAlign(CENTER);
+    textSize(80);
+    text("PANG", width/2, height/2);
+  } else if (weirdmario==true) {
+    background(100);
+    fill(255);
+    textAlign(CENTER);
+    textSize(80);
+    text("WEIRD MARIO", width/2, height/2);
+  } else if (options==true) {
+    background(100);
+    fill(255);
+    textAlign(CENTER);
+    textSize(80);
+    text("OPTIONS", width/2, height/2);
+  } else if (quitter==true) {
+    background(0);
+    fill(255,0,0);
+    textAlign(CENTER);
+    textSize(80);
+    text("QUITTER", width/2, height/2);
+  }
+  
+  if (quit == 2) {
+    exit();
+  }
+}
