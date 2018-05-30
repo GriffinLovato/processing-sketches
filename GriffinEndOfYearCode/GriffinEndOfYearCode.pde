@@ -171,11 +171,13 @@ void controlEvent(ControlEvent theEvent) {
 
 void draw() {
   if (mainmenu==true) {
-    background(150, 100, 75);
-    fill(0, 50, 255);
+    background(100);
+    fill(random(255),random(255),random(255));
+    rect(width/2-175,45,350,65);
+    fill(255);
     textAlign(CENTER);
     textSize(60);
-    text("Game Name", width/2, 100);
+    text("Main Menu", width/2, 100);
   } else if (pang==true) {
     background(100);
     fill(255);
@@ -201,7 +203,7 @@ void draw() {
     textSize(80);
     text("QUITTER", width/2, height/2);
   } else if (credits==true) {
-    background(50);
+    background(0);
     fill(255);
     textAlign(CENTER);
     textSize(80);
