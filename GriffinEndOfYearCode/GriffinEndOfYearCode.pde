@@ -24,7 +24,7 @@ void setup() {
   menu= new SoundFile (this, "menu.mp3");
   click= new SoundFile (this, "click.mp3");
   menu.play();
-  size(1000, 500);
+  size(displayWidth,displayHeight);
   noStroke();
   smooth();
   cp5 = new ControlP5(this);
@@ -32,7 +32,7 @@ void setup() {
   cp5.addTab("Hide Menu")
     .setColorLabel(color(255))
     .setColorActive(color(255, 0, 0))
-    .setSize(50, 20)
+    .setSize(width/20, height/25)
     ;
 
   cp5.getTab("default")
@@ -41,7 +41,7 @@ void setup() {
     .setId(1)
     .setColorLabel(color(255))
     .setColorActive(color(0, 255, 0))
-    .setSize(50, 20)
+    .setSize(width/20, height/25)
     ;
 
   cp5.getTab("Hide Menu")
@@ -52,44 +52,44 @@ void setup() {
 
   cp5.addButton("Play Pang")
     .setValue(1)
-    .setPosition(width/2-75, 150)
-    .setSize(150, 30)
+    .setPosition(width/2-75, height*0.3)
+    .setSize(width/6, height/16)
     ;
 
   cp5.addButton("Play Weird Mario")
     .setValue(2)
-    .setPosition(width/2-75, 190)
-    .setSize(150, 30);
+    .setPosition(width/2-75, height*0.38)
+    .setSize(width/6, height/16);
   ;
 
   cp5.addButton("Play Tomb Run")
     .setValue(3)
-    .setPosition(width/2-75, 230)
-    .setSize(150, 30)
+    .setPosition(width/2-75, height*0.46)
+    .setSize(width/6, height/16)
     ;
 
   cp5.addButton("Be A Quitter")
     .setValue(4)
-    .setPosition(width/2-75, 350)
-    .setSize(150, 30)
+    .setPosition(width/2-75, height*0.7)
+    .setSize(width/6, height/16)
     ;
 
   cp5.addButton("")
     .setValue(6)
-    .setPosition(998, 498)
-    .setSize(2, 2)
+    .setPosition(width-width/500, height-height/500)
+    .setSize(width/500, height/250)
     ;
 
   cp5.addButton("Credits")
     .setValue(5)
-    .setPosition(width/2-75, 270)
-    .setSize(150, 30)
+    .setPosition(width/2-75, height*0.54)
+    .setSize(width/6, height/16)
     ;
 
   cp5.addButton("Back To Menu")
     .setValue(7)
-    .setPosition(930, 10)
-    .setSize(60, 20)
+    .setPosition((width/16)*15, height/50)
+    .setSize(width/16, height/25)
     ;
 
   cp5.getController("Back To Menu").moveTo("global");
@@ -112,7 +112,7 @@ void controlEvent(ControlEvent theEvent) {
     quitter = false;
     credits = false;
     click.play();
-    click.rate(75);
+    click.rate(60);
   } else if (theEvent.getController().getValue() == 2) {
     pang = false;
     mainmenu = false;
@@ -121,7 +121,7 @@ void controlEvent(ControlEvent theEvent) {
     quitter = false;
     credits = false;
     click.play();
-    click.rate(75);
+    click.rate(60);
   } else if (theEvent.getController().getValue() == 3) {
     pang = false;
     mainmenu = false;
@@ -130,7 +130,7 @@ void controlEvent(ControlEvent theEvent) {
     quitter = false;
     credits = false;
     click.play();
-    click.rate(75);
+    click.rate(60);
   } else if (theEvent.getController().getValue() == 4) {
     pang = false;
     mainmenu = false;
@@ -140,7 +140,7 @@ void controlEvent(ControlEvent theEvent) {
     credits = false;
     quit += 1;
     click.play();
-    click.rate(75);
+    click.rate(60);
   } else if (theEvent.getController().getValue() == 5) {
     pang = false;
     mainmenu = false;
@@ -150,13 +150,13 @@ void controlEvent(ControlEvent theEvent) {
     credits = true;
     creditwords = 500;
     click.play();
-    click.rate(75);
+    click.rate(60);
   } else if (theEvent.getController().getValue() == 6) {
     textSize(10);
     fill(255);
     text("Easter Egg!", 950, 475);
     click.play();
-    click.rate(75);
+    click.rate(60);
   } else if (theEvent.getController().getValue() == 7) {
     pang = false;
     mainmenu = true;
@@ -165,50 +165,51 @@ void controlEvent(ControlEvent theEvent) {
     quitter = false;
     credits = false;
     click.play();
-    click.rate(75);
+    click.rate(60);
   }
 }
 
 void draw() {
   if (mainmenu==true) {
     background(100);
-    fill(random(255),random(255),random(255));
-    rect(width/2-175,45,350,65);
+    fill(random(255), random(255), random(255));
+    rectMode(CENTER);
+    rect(width/2, height*0.09, width*0.35, height*0.13);
     fill(255);
     textAlign(CENTER);
-    textSize(60);
-    text("Main Menu", width/2, 100);
+    textSize(height/10);
+    text("Main Menu", width/2, height*0.13);
   } else if (pang==true) {
     background(100);
     fill(255);
     textAlign(CENTER);
-    textSize(80);
+    textSize(height/5);
     text("PANG", width/2, height/2);
   } else if (weirdmario==true) {
     background(100);
     fill(255);
     textAlign(CENTER);
-    textSize(80);
+    textSize(height/5);
     text("WEIRD MARIO", width/2, height/2);
   } else if (tombrun==true) {
     background(100);
     fill(255);
     textAlign(CENTER);
-    textSize(80);
+    textSize(height/5);
     text("TOMB RUN", width/2, height/2);
   } else if (quitter==true) {
     background(0);
     fill(255, 0, 0);
     textAlign(CENTER);
-    textSize(80);
+    textSize(height/5);
     text("QUITTER", width/2, height/2);
   } else if (credits==true) {
     background(0);
     fill(255);
     textAlign(CENTER);
-    textSize(80);
+    textSize(height/5);
     text("CREDITS", width/2, creditwords);
-    textSize(20);
+    textSize(height/25);
     text("GUI ELEMENTS  -  Griffin", width/2, creditwords+50);
     text("PANG  -  Nate", width/2, creditwords+80);
     text("WEIRD MARIO  -  Caleb", width/2, creditwords+110);
