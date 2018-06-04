@@ -18,7 +18,7 @@ ControlP5 cp5;
 
 boolean mainmenu, pang, weirdmario, tombrun, quitter, mainmenumusic, clicker, credits;
 int quit = 0;
-float creditwords = 500;
+float creditwords = height;
 
 void setup() {
   menu= new SoundFile (this, "menu.mp3");
@@ -76,8 +76,8 @@ void setup() {
 
   cp5.addButton("")
     .setValue(6)
-    .setPosition(width-width/500, height-height/500)
-    .setSize(width/500, height/250)
+    .setPosition(width-width/250, height-height/250)
+    .setSize(width/250, height/250)
     ;
 
   cp5.addButton("Credits")
@@ -148,7 +148,7 @@ void controlEvent(ControlEvent theEvent) {
     tombrun = false;
     quitter = false;
     credits = true;
-    creditwords = 500;
+    creditwords = height;
     click.play();
     click.rate(60);
   } else if (theEvent.getController().getValue() == 6) {
