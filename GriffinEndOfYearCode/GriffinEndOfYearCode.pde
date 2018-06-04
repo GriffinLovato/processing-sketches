@@ -52,25 +52,25 @@ void setup() {
 
   cp5.addButton("Play Pang")
     .setValue(1)
-    .setPosition(width/2-75, height*0.3)
+    .setPosition((width/2)-(width/12), height*0.3)
     .setSize(width/6, height/16)
     ;
 
   cp5.addButton("Play Weird Mario")
     .setValue(2)
-    .setPosition(width/2-75, height*0.38)
+    .setPosition((width/2)-(width/12), height*0.38)
     .setSize(width/6, height/16);
   ;
 
   cp5.addButton("Play Tomb Run")
     .setValue(3)
-    .setPosition(width/2-75, height*0.46)
+    .setPosition((width/2)-(width/12), height*0.46)
     .setSize(width/6, height/16)
     ;
 
   cp5.addButton("Be A Quitter")
     .setValue(4)
-    .setPosition(width/2-75, height*0.7)
+    .setPosition((width/2)-(width/12), height*0.7)
     .setSize(width/6, height/16)
     ;
 
@@ -82,7 +82,7 @@ void setup() {
 
   cp5.addButton("Credits")
     .setValue(5)
-    .setPosition(width/2-75, height*0.54)
+    .setPosition((width/2)-(width/12), height*0.54)
     .setSize(width/6, height/16)
     ;
 
