@@ -24,7 +24,7 @@ void setup() {
   menu= new SoundFile (this, "menu.mp3");
   click= new SoundFile (this, "click.mp3");
   menu.play();
-  size(displayWidth,displayHeight);
+  fullScreen();
   noStroke();
   smooth();
   cp5 = new ControlP5(this);
